@@ -12,7 +12,7 @@ const App = () => {
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Item 1</a></li>
+        <li><a></a></li>
         <li>
           <a>Parent</a>
           <ul className="p-2">
@@ -57,8 +57,9 @@ const App = () => {
     <div className="max-w-md">
       <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
       <p className="mb-5">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        quasi. In deleniti eaque aut repudiandae et a id nisi.
+       Lorem ipsum dolor, sit amet consectetur adipisicing elit. A omnis quos facere atque nemo ullam dicta totam, quas quidem, delectus molestias possimus excepturi tempore enim labore autem. Labore, ipsam aperiam?
+       Pariatur, at. Dolore, nesciunt eaque voluptatem maxime blanditiis aspernatur amet, iste quia ea doloremque vitae necessitatibus 
+       eos est quis labore voluptate in temporibus adipisci libero molestias? Ducimus voluptate a doloribus.
       </p>
       <button className="btn btn-primary">Get Started</button>
     </div>
