@@ -4,12 +4,12 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Kruslar;
+use common\models\Kurslar;
 
 /**
- * KruslarSearch represents the model behind the search form of `common\models\Kruslar`.
+ * KurslarSearch represents the model behind the search form of `common\models\Kurslar`.
  */
-class KruslarSearch extends Kruslar
+class KurslarSearch extends Kurslar
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class KruslarSearch extends Kruslar
     public function rules()
     {
         return [
-            [['Id', 'Narxi'], 'integer'], // `:`ni olib tashlang
-            [['Nomi', 'Rasmi'], 'safe'], // `:`ni olib tashlang
+            [['id', 'narxi'], 'integer'],
+            [['nom', 'malumot', 'rasm'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class KruslarSearch extends Kruslar
      */
     public function search($params, $formName = null)
     {
-        $query = Kruslar::find();
+        $query = Kurslar::find();
 
         // add conditions that should always apply here
 
@@ -59,12 +59,13 @@ class KruslarSearch extends Kruslar
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'Id' => $this->Id, // `:`ni olib tashlang
-            'Narxi' => $this->Narxi, // `:`ni olib tashlang
+            'id' => $this->id,
+            'narxi' => $this->narxi,
         ]);
 
-        $query->andFilterWhere(['like', 'Nomi', $this->Nomi]) // `:`ni olib tashlang
-            ->andFilterWhere(['like', 'Rasmi', $this->Rasmi]); // `:`ni olib tashlang
+        $query->andFilterWhere(['like', 'nom', $this->nom])
+            ->andFilterWhere(['like', 'malumot', $this->malumot])
+            ->andFilterWhere(['like', 'rasm', $this->rasm]);
 
         return $dataProvider;
     }
