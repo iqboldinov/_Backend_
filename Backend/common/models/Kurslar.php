@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "kurslar".
+ * Bu "kurslar" jadvali uchun model klassi.
  *
  * @property int $Id:
  * @property string $Nomi:
@@ -15,10 +15,8 @@ use Yii;
  */
 class Kurslar extends \yii\db\ActiveRecord
 {
-
-
     /**
-     * {@inheritdoc}
+     * Jadval nomi
      */
     public static function tableName()
     {
@@ -26,7 +24,7 @@ class Kurslar extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
+     * Tekshirish qoidalari (Rules)
      */
     public function rules()
     {
@@ -39,26 +37,24 @@ class Kurslar extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
+     * Maydon nomlari (Labels)
      */
     public function attributeLabels()
     {
         return [
-            'Id:' => 'Id:',
-            'Nomi:' => 'Nomi:',
-            'Malumoti:' => 'Malumoti:',
-            'Rasmi:' => 'Rasmi:',
-            'Narxi:' => 'Narxi:',
+            'Id:' => 'ID',
+            'Nomi:' => 'Kurs nomi',
+            'Malumoti:' => 'Kurs haqida ma\'lumot',
+            'Rasmi:' => 'Rasm URL',
+            'Narxi:' => 'Narxi',
         ];
     }
 
     /**
-     * {@inheritdoc}
-     * @return KurslarQuery the active query used by this AR class.
+     * Qidiruv uchun ActiveQuery
      */
     public static function find()
     {
         return new KurslarQuery(get_called_class());
     }
-
 }

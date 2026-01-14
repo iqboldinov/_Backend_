@@ -4,15 +4,14 @@ import axios from 'axios';
 import Kirish from './Kirish.jsx'; 
 import About from './About.jsx';
 import Connect from './Connect.jsx'; 
-import { PatternFormat } from 'react-number-format'; 
 
 const Home = () => {
+  // Backend manzilingizni tekshiring: .log yoki .loc
   const [manzil, setManzil] = useState("http://backend.log/backend/kurslar");
   const [kurslar, setKurslar] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Axios orqali ma'lumot olish
     axios.get(manzil)
       .then((malumot) => {
         setKurslar(malumot.data);
@@ -20,7 +19,7 @@ const Home = () => {
       .catch((err) => {
         console.error("Backend ulanishda xato:", err);
       });
-  }, [manzil]); // manzil o'zgarsa qayta ishlaydi
+  }, [manzil]);
 
   return (
     <div className='min-h-screen bg-white'>
@@ -61,6 +60,7 @@ const Home = () => {
               <h1 className="mb-7 text-6xl md:text-7xl font-black text-white leading-tight">
                 Vaqt - bu <span className="text-blue-500">Bilim!</span>
               </h1>
+              <p className="mb-10 text-xl text-gray-200">Meta IT School - Kelajak kasbini bugun o'rganing.</p>
               <button 
                 onClick={() => navigate('/reg')}
                 className="btn btn-primary bg-blue-600 border-none px-12 py-4 h-auto text-lg text-white rounded-2xl hover:bg-blue-700 shadow-lg"
@@ -71,12 +71,12 @@ const Home = () => {
           </div>
         </div>
 
-        {/* About bo'limiga bazadan kelgan ma'lumotni yuboramiz */}
+        {/* Kurslarni About komponentiga yuboramiz */}
         <div id="about">
              <About data={kurslar} /> 
         </div>
 
-        <div id="contact">
+        <div id="contact" className="mt-20">
              <Connect />
         </div>
       </div> 

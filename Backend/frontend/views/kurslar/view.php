@@ -6,8 +6,9 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var common\models\Kurslar $model */
 
-$this->title = $model->Id:;
-$this->params['breadcrumbs'][] = ['label' => 'Kurslars', 'url' => ['index']];
+// Git belgilari olib tashlandi va ikki nuqtali ustun nomi to'g'irlandi
+$this->title = $model->{'Nomi:'};
+$this->params['breadcrumbs'][] = ['label' => 'Kurslar', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'Id:' => $model->Id:], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'Id:' => $model->Id:], [
+        <?= Html::a('Tahrirlash', ['update', 'id' => $model->{'Id:'}], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a("O'chirish", ['delete', 'id' => $model->{'Id:'}], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => "Haqiqatan ham ushbu kursni o'chirmoqchimisiz?",
                 'method' => 'post',
             ],
         ]) ?>

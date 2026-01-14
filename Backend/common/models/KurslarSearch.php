@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use yii\base\Model;
@@ -16,9 +17,9 @@ class KurslarSearch extends Kurslar
     public function rules()
     {
         return [
-            // Ikki nuqtalar olib tashlandi
-            [['Id', 'Narxi'], 'integer'],
-            [['Nomi', 'Malumoti', 'Rasmi'], 'safe'],
+            // Bazadagi aniq nomlar bilan bir xil bo'lishi kerak
+            [['Id:', 'Narxi:'], 'integer'],
+            [['Nomi:', 'Malumoti:', 'Rasmi:'], 'safe'],
         ];
     }
 
@@ -30,6 +31,9 @@ class KurslarSearch extends Kurslar
         return Model::scenarios();
     }
 
+    /**
+     * Creates data provider instance with search query applied
+     */
     public function search($params, $formName = null)
     {
         $query = Kurslar::find();
@@ -44,15 +48,15 @@ class KurslarSearch extends Kurslar
             return $dataProvider;
         }
 
-        // Grid filtering conditions - Ikki nuqtalar olib tashlandi
+        // Grid filtering conditions - Bazadagi nomlar bilan bir xil
         $query->andFilterWhere([
-            'Id' => $this->Id,
-            'Narxi' => $this->Narxi,
+            'Id:' => $this->{'Id:'},
+            'Narxi:' => $this->{'Narxi:'},
         ]);
 
-        $query->andFilterWhere(['like', 'Nomi', $this->Nomi])
-            ->andFilterWhere(['like', 'Malumoti', $this->Malumoti])
-            ->andFilterWhere(['like', 'Rasmi', $this->Rasmi]);
+        $query->andFilterWhere(['like', 'Nomi:', $this->{'Nomi:'}])
+            ->andFilterWhere(['like', 'Malumoti:', $this->{'Malumoti:'}])
+            ->andFilterWhere(['like', 'Rasmi:', $this->{'Rasmi:'}]);
 
         return $dataProvider;
     }
