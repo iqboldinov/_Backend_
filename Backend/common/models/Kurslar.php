@@ -5,14 +5,15 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "kruslar".
+ * This is the model class for table "kurslar".
  *
  * @property int $Id:
  * @property string $Nomi:
+ * @property string $Malumoti:
  * @property string $Rasmi:
  * @property int $Narxi:
  */
-class Kruslar extends \yii\db\ActiveRecord
+class Kurslar extends \yii\db\ActiveRecord
 {
 
 
@@ -21,7 +22,7 @@ class Kruslar extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'kruslar';
+        return 'kurslar';
     }
 
     /**
@@ -30,8 +31,8 @@ class Kruslar extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Nomi:', 'Rasmi:', 'Narxi:'], 'required'],
-            [['Rasmi:'], 'string'],
+            [['Nomi:', 'Malumoti:', 'Rasmi:', 'Narxi:'], 'required'],
+            [['Malumoti:', 'Rasmi:'], 'string'],
             [['Narxi:'], 'integer'],
             [['Nomi:'], 'string', 'max' => 200],
         ];
@@ -45,6 +46,7 @@ class Kruslar extends \yii\db\ActiveRecord
         return [
             'Id:' => 'Id:',
             'Nomi:' => 'Nomi:',
+            'Malumoti:' => 'Malumoti:',
             'Rasmi:' => 'Rasmi:',
             'Narxi:' => 'Narxi:',
         ];
@@ -52,11 +54,11 @@ class Kruslar extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return KruslarQuery the active query used by this AR class.
+     * @return KurslarQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new KruslarQuery(get_called_class());
+        return new KurslarQuery(get_called_class());
     }
 
 }

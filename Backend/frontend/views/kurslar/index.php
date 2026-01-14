@@ -1,24 +1,24 @@
 <?php
 
-use common\models\Kruslar;
+use common\models\Kurslar;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
-/** @var common\models\KruslarSearch $searchModel */
+/** @var common\models\KurslarSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Kruslars';
+$this->title = 'Kurslars';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="kruslar-index">
+<div class="kurslar-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Kruslar', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Kurslar', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -32,11 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'Id:',
             'Nomi:',
+            'Malumoti::ntext',
             'Rasmi::ntext',
             'Narxi:',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Kruslar $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Kurslar $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'Id:' => $model->Id:]);
                  }
             ],

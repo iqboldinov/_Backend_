@@ -1,22 +1,30 @@
 <?php
-
 namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Kruslar;
+use common\models\Kurslar;
 
-class KruslarSearch extends Kruslar
+/**
+ * KurslarSearch represents the model behind the search form of `common\models\Kurslar`.
+ */
+class KurslarSearch extends Kurslar
 {
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
-            // Bu yerda 'ID' hammasi katta bo'lishi mumkinligini tekshiring
-            [['ID', 'Narxi'], 'integer'], 
-            [['Nomi', 'Rasmi'], 'safe'], 
+            // Ikki nuqtalar olib tashlandi
+            [['Id', 'Narxi'], 'integer'],
+            [['Nomi', 'Malumoti', 'Rasmi'], 'safe'],
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function scenarios()
     {
         return Model::scenarios();
@@ -24,7 +32,7 @@ class KruslarSearch extends Kruslar
 
     public function search($params, $formName = null)
     {
-        $query = Kruslar::find();
+        $query = Kurslar::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -36,12 +44,14 @@ class KruslarSearch extends Kruslar
             return $dataProvider;
         }
 
+        // Grid filtering conditions - Ikki nuqtalar olib tashlandi
         $query->andFilterWhere([
-            'ID' => $this->ID, 
+            'Id' => $this->Id,
             'Narxi' => $this->Narxi,
         ]);
 
         $query->andFilterWhere(['like', 'Nomi', $this->Nomi])
+            ->andFilterWhere(['like', 'Malumoti', $this->Malumoti])
             ->andFilterWhere(['like', 'Rasmi', $this->Rasmi]);
 
         return $dataProvider;

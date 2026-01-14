@@ -1,89 +1,98 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
+import Kirish from './Kirish.jsx'; 
+import About from './About.jsx';
+import Connect from './Connect.jsx'; 
+import { PatternFormat } from 'react-number-format'; 
 
-const App = () => {
+const Home = () => {
+  const [manzil, setManzil] = useState("http://backend.log/backend/kurslar");
+  const [kurslar, setKurslar] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Axios orqali ma'lumot olish
+    axios.get(manzil)
+      .then((malumot) => {
+        setKurslar(malumot.data);
+      })
+      .catch((err) => {
+        console.error("Backend ulanishda xato:", err);
+      });
+  }, [manzil]); // manzil o'zgarsa qayta ishlaydi
+
   return (
-    <div className='max-w-[1400px] m-auto border-4'>
-    <div className="navbar bg-base-100 shadow-sm sticky top-0 z-[99]">
-  <div className="navbar-start">
-    <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+    <div className='min-h-screen bg-white'>
+      {/* Navbar */}
+      <div className="navbar bg-black text-white px-4 md:px-10 sticky top-0 z-[99]">
+        <div className="navbar-start">
+          <a className="text-xl font-bold">Meta IT School</a>
+        </div>
+        
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">
+            <li><a href="#about" className="hover:text-blue-500 cursor-pointer">Biz haqimizda</a></li>
+            <li><a href="#courses" className="hover:text-blue-500 cursor-pointer">Qabullar</a></li>
+            <li><a href="#contact" className="hover:text-blue-500 cursor-pointer">Biz bilan aloqa!</a></li>
+          </ul>
+        </div>
+        
+        <div className="navbar-end">
+          <button onClick={() => navigate('/reg')} className="btn btn-sm md:btn-md bg-white text-black hover:bg-gray-200 border-none px-6 rounded-lg">
+            Kirish
+          </button>
+        </div>
       </div>
-      <ul
-        tabIndex="-1"
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a></a></li>
-        <li>
-          <a>Parent</a>
-          <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a>Item 3</a></li>
-      </ul>
-    </div>
-    <a className="btn btn-ghost text-xl">Meta IT School</a>
-  </div>
-  <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2 bg-base-100 w-40 z-1">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a>Item 3</a></li>
-    </ul>
-  </div>
-  <div className="navbar-end">
-    <a className="btn">kirish</a>
-  </div>
-</div>
 
-    <div
-  className="hero min-h-[700px]"
-  style={{
-    backgroundImage:
-      "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
-  }}
->
-  <div className="hero-overlay"></div>
-  <div className="hero-content text-neutral-content text-center">
-    <div className="max-w-md">
-      <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-      <p className="mb-5">
-       Lorem ipsum dolor, sit amet consectetur adipisicing elit. A omnis quos facere atque nemo ullam dicta totam, quas quidem, delectus molestias possimus excepturi tempore enim labore autem. Labore, ipsam aperiam?
-       Pariatur, at. Dolore, nesciunt eaque voluptatem maxime blanditiis aspernatur amet, iste quia ea doloremque vitae necessitatibus 
-       eos est quis labore voluptate in temporibus adipisci libero molestias? Ducimus voluptate a doloribus.
-      </p>
-      <button className="btn btn-primary">Get Started</button>
-    </div>
-  </div>
-</div>
+      <div className='max-w-[1200px] m-auto px-4 py-8'>
+        {/* Hero Section */}
+        <div
+          className="hero min-h-[550px] rounded-[40px] overflow-hidden mb-16 shadow-2xl relative"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1470&q=80')",
+            backgroundPosition: 'center',
+            backgroundSize: 'cover'
+          }}
+        >
+          <div className="hero-overlay bg-opacity-70 bg-black"></div>
+          <div className="hero-content text-center text-neutral-content">
+            <div className="max-w-2xl">
+              <h1 className="mb-7 text-6xl md:text-7xl font-black text-white leading-tight">
+                Vaqt - bu <span className="text-blue-500">Bilim!</span>
+              </h1>
+              <button 
+                onClick={() => navigate('/reg')}
+                className="btn btn-primary bg-blue-600 border-none px-12 py-4 h-auto text-lg text-white rounded-2xl hover:bg-blue-700 shadow-lg"
+              >
+                kursga yozilish
+              </button>
+            </div>
+          </div>
+        </div>
 
-<div className="hero bg-base-200 py-[50px]">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-      className="max-w-sm rounded-lg shadow-2xl"
-    />
-    <div>
-      <h1 className="text-5xl font-bold">Box Office News!</h1>
-      <p className="py-6">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        quasi. In deleniti eaque aut repudiandae et a id nisi.
-      </p>
-      <button className="btn btn-primary">Get Started</button>
-    </div>
-  </div>
-</div>
-    </div>
-  )
-}
+        {/* About bo'limiga bazadan kelgan ma'lumotni yuboramiz */}
+        <div id="about">
+             <About data={kurslar} /> 
+        </div>
 
-export default App
+        <div id="contact">
+             <Connect />
+        </div>
+      </div> 
+    </div> 
+  );
+};
+
+const MainApp = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/reg" element={<Kirish />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default MainApp;

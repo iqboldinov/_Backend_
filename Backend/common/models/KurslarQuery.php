@@ -3,11 +3,11 @@
 namespace common\models;
 
 /**
- * This is the ActiveQuery class for [[Kruslar]].
+ * This is the ActiveQuery class for [[Kurslar]].
  *
- * @see Kruslar
+ * @see Kurslar
  */
-class KruslarQuery extends \yii\db\ActiveQuery
+class KurslarQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class KruslarQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Kruslar[]|array
+     * @return Kurslar[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class KruslarQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Kruslar|array|null
+     * @return Kurslar|array|null
      */
     public function one($db = null)
     {

@@ -8,9 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * KruslarController implements the CRUD actions for Kruslar model.
- */
+
 class KruslarController extends Controller
 {
     /**
@@ -32,7 +30,6 @@ class KruslarController extends Controller
     }
 
     /**
-     * Lists all Kruslar models.
      * @return string
      */
     public function actionIndex()
@@ -47,10 +44,9 @@ class KruslarController extends Controller
     }
 
     /**
-     * Displays a single Kruslar model.
-     * @param int $Id
+     * @param int 
      * @return string
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException 
      */
     public function actionView($Id)
     {
@@ -59,9 +55,6 @@ class KruslarController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Kruslar model.
-     */
     public function actionCreate()
     {
         $model = new Kruslar();
@@ -80,8 +73,7 @@ class KruslarController extends Controller
     }
 
     /**
-     * Updates an existing Kruslar model.
-     * @param int $Id
+     * @param int 
      */
     public function actionUpdate($Id)
     {
@@ -97,8 +89,8 @@ class KruslarController extends Controller
     }
 
     /**
-     * Deletes an existing Kruslar model.
-     * @param int $Id
+     
+     * @param int 
      */
     public function actionDelete($Id)
     {
@@ -107,12 +99,10 @@ class KruslarController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Kruslar model based on its primary key value.
-     */
+   
     protected function findModel($Id)
     {
-        // Agar bazada ustun nomi rostdan ham 'Id' bo'lsa:
+       
         if (($model = Kruslar::findOne(['Id' => $Id])) !== null) {
             return $model;
         }
