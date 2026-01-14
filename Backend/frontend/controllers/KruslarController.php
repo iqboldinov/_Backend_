@@ -33,7 +33,6 @@ class KruslarController extends Controller
 
     /**
      * Lists all Kruslar models.
-     *
      * @return string
      */
     public function actionIndex()
@@ -49,21 +48,19 @@ class KruslarController extends Controller
 
     /**
      * Displays a single Kruslar model.
-     * @param int $Id: Id:
+     * @param int $Id
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($Id:)
+    public function actionView($Id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($Id:),
+            'model' => $this->findModel($Id),
         ]);
     }
 
     /**
      * Creates a new Kruslar model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
@@ -71,7 +68,7 @@ class KruslarController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'Id:' => $model->Id:]);
+                return $this->redirect(['view', 'Id' => $model->Id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -84,17 +81,14 @@ class KruslarController extends Controller
 
     /**
      * Updates an existing Kruslar model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $Id: Id:
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param int $Id
      */
-    public function actionUpdate($Id:)
+    public function actionUpdate($Id)
     {
-        $model = $this->findModel($Id:);
+        $model = $this->findModel($Id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Id:' => $model->Id:]);
+            return $this->redirect(['view', 'Id' => $model->Id]);
         }
 
         return $this->render('update', [
@@ -104,28 +98,22 @@ class KruslarController extends Controller
 
     /**
      * Deletes an existing Kruslar model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $Id: Id:
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param int $Id
      */
-    public function actionDelete($Id:)
+    public function actionDelete($Id)
     {
-        $this->findModel($Id:)->delete();
+        $this->findModel($Id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
      * Finds the Kruslar model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $Id: Id:
-     * @return Kruslar the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($Id:)
+    protected function findModel($Id)
     {
-        if (($model = Kruslar::findOne(['Id:' => $Id:])) !== null) {
+        // Agar bazada ustun nomi rostdan ham 'Id' bo'lsa:
+        if (($model = Kruslar::findOne(['Id' => $Id])) !== null) {
             return $model;
         }
 
