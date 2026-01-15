@@ -5,10 +5,11 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var common\models\Kurslar $model */
 
-$this->title = 'Update Kurslar: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Kurslars', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+// Git belgilari olib tashlandi va ikki nuqtali ustunga murojaat to'g'irlandi
+$this->title = 'Kursni tahrirlash: ' . $model->{'Id:'};
+$this->params['breadcrumbs'][] = ['label' => 'Kurslar', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->{'Id:'}, 'url' => ['view', 'id' => $model->{'Id:'}]];
+$this->params['breadcrumbs'][] = 'Tahrirlash';
 ?>
 <div class="kurslar-update">
 

@@ -5,9 +5,7 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 
-/**
- * Login form
- */
+
 class LoginForm extends Model
 {
     public $username;
@@ -23,21 +21,19 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
+            
             [['username', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
+            
             ['password', 'validatePassword'],
         ];
     }
 
     /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
      *
-     * @param string $attribute the attribute currently being validated
-     * @param array $params the additional name-value pairs given in the rule
+     * @param string 
+     * @param array 
      */
     public function validatePassword($attribute, $params)
     {
@@ -50,9 +46,7 @@ class LoginForm extends Model
     }
 
     /**
-     * Logs in a user using the provided username and password.
-     *
-     * @return bool whether the user is logged in successfully
+     * @return bool
      */
     public function login()
     {
@@ -64,8 +58,6 @@ class LoginForm extends Model
     }
 
     /**
-     * Finds user by [[username]]
-     *
      * @return User|null
      */
     protected function getUser()

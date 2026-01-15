@@ -18,19 +18,21 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    {/* Faqat bazadagi real ustun nomlarini qoldiramiz */}
+    
+    <?= $form->field($model, 'Id:') ?>
 
-    <?= $form->field($model, 'nom') ?>
+    <?= $form->field($model, 'Nomi:') ?>
 
-    <?= $form->field($model, 'malumot') ?>
+    <?= $form->field($model, 'Malumoti:') ?>
 
-    <?= $form->field($model, 'rasm') ?>
+    <?= $form->field($model, 'Rasmi:') ?>
 
-    <?= $form->field($model, 'narxi') ?>
+    <?= $form->field($model, 'Narxi:') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Qidirish', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Tozalash', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

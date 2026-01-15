@@ -5,20 +5,18 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "kurslar".
+ * Bu "kurslar" jadvali uchun model klassi.
  *
- * @property int $id
- * @property string $nom
- * @property string $malumot
- * @property string $rasm
- * @property int $narxi
+ * @property int $Id:
+ * @property string $Nomi:
+ * @property string $Malumoti:
+ * @property string $Rasmi:
+ * @property int $Narxi:
  */
 class Kurslar extends \yii\db\ActiveRecord
 {
-
-
     /**
-     * {@inheritdoc}
+     * Jadval nomi
      */
     public static function tableName()
     {
@@ -26,39 +24,37 @@ class Kurslar extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
+     * Tekshirish qoidalari (Rules)
      */
     public function rules()
     {
         return [
-            [['nom', 'malumot', 'rasm', 'narxi'], 'required'],
-            [['malumot', 'rasm'], 'string'],
-            [['narxi'], 'integer'],
-            [['nom'], 'string', 'max' => 150],
+            [['Nomi:', 'Malumoti:', 'Rasmi:', 'Narxi:'], 'required'],
+            [['Malumoti:', 'Rasmi:'], 'string'],
+            [['Narxi:'], 'integer'],
+            [['Nomi:'], 'string', 'max' => 200],
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * Maydon nomlari (Labels)
      */
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'nom' => 'Nom',
-            'malumot' => 'Malumot',
-            'rasm' => 'Rasm',
-            'narxi' => 'Narxi',
+            'Id:' => 'ID',
+            'Nomi:' => 'Kurs nomi',
+            'Malumoti:' => 'Kurs haqida ma\'lumot',
+            'Rasmi:' => 'Rasm URL',
+            'Narxi:' => 'Narxi',
         ];
     }
 
     /**
-     * {@inheritdoc}
-     * @return KurslarQuery the active query used by this AR class.
+     * Qidiruv uchun ActiveQuery
      */
     public static function find()
     {
         return new KurslarQuery(get_called_class());
     }
-
 }

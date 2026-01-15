@@ -33,8 +33,6 @@ class KurslarController extends Controller
 
     /**
      * Lists all Kurslar models.
-     *
-     * @return string
      */
     public function actionIndex()
     {
@@ -50,8 +48,6 @@ class KurslarController extends Controller
     /**
      * Displays a single Kurslar model.
      * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
@@ -62,8 +58,6 @@ class KurslarController extends Controller
 
     /**
      * Creates a new Kurslar model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
@@ -71,7 +65,8 @@ class KurslarController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                // Agar modelda ustun nomi 'Id:' bo'lsa, quyidagicha murojaat qilinadi
+                return $this->redirect(['view', 'id' => $model->{'Id:'}]);
             }
         } else {
             $model->loadDefaultValues();
@@ -84,17 +79,14 @@ class KurslarController extends Controller
 
     /**
      * Updates an existing Kurslar model.
-     * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->{'Id:'}]);
         }
 
         return $this->render('update', [
@@ -104,10 +96,7 @@ class KurslarController extends Controller
 
     /**
      * Deletes an existing Kurslar model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
     {
@@ -118,14 +107,11 @@ class KurslarController extends Controller
 
     /**
      * Finds the Kurslar model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Kurslar the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Kurslar::findOne(['id' => $id])) !== null) {
+        // 'Id:' bazadagi ustun nomi, $id esa funksiyaga kelayotgan qiymat
+        if (($model = Kurslar::findOne(['Id:' => $id])) !== null) {
             return $model;
         }
 

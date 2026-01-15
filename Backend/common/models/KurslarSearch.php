@@ -17,8 +17,9 @@ class KurslarSearch extends Kurslar
     public function rules()
     {
         return [
-            [['id', 'narxi'], 'integer'],
-            [['nom', 'malumot', 'rasm'], 'safe'],
+            // Bazadagi aniq nomlar bilan bir xil bo'lishi kerak
+            [['Id:', 'Narxi:'], 'integer'],
+            [['Nomi:', 'Malumoti:', 'Rasmi:'], 'safe'],
         ];
     }
 
@@ -27,23 +28,15 @@ class KurslarSearch extends Kurslar
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
     /**
      * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     * @param string|null $formName Form name to be used into `->load()` method.
-     *
-     * @return ActiveDataProvider
      */
     public function search($params, $formName = null)
     {
         $query = Kurslar::find();
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -52,20 +45,18 @@ class KurslarSearch extends Kurslar
         $this->load($params, $formName);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
+        // Grid filtering conditions - Bazadagi nomlar bilan bir xil
         $query->andFilterWhere([
-            'id' => $this->id,
-            'narxi' => $this->narxi,
+            'Id:' => $this->{'Id:'},
+            'Narxi:' => $this->{'Narxi:'},
         ]);
 
-        $query->andFilterWhere(['like', 'nom', $this->nom])
-            ->andFilterWhere(['like', 'malumot', $this->malumot])
-            ->andFilterWhere(['like', 'rasm', $this->rasm]);
+        $query->andFilterWhere(['like', 'Nomi:', $this->{'Nomi:'}])
+            ->andFilterWhere(['like', 'Malumoti:', $this->{'Malumoti:'}])
+            ->andFilterWhere(['like', 'Rasmi:', $this->{'Rasmi:'}]);
 
         return $dataProvider;
     }
